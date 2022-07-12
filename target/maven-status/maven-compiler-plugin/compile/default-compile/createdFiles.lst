@@ -1,0 +1,8 @@
+com\pro\wings\entity\Student.class
+com\pro\wings\dao\StudentDao.class
+com\pro\wings\service\StudentServiceImpl.class
+com\pro\wings\dao\StudentDaoImpl.class
+com\pro\wings\service\StudentService.class
+com\pro\wings\config\FrontControllerConfig.class
+com\pro\wings\config\WebAppConfig.class
+com\pro\wings\controller\StudentController.class
