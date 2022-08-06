@@ -26,4 +26,22 @@ public class StudentServiceImpl implements StudentService{
 		return stdDao.getList();
 	}
 
+	@Override
+	public Student getStudentRollNum(int rollNum) {
+		
+		return stdDao.getStudentRollNum(rollNum);
+	}
+
+	@Override
+	public boolean updateStudent(int rollNum, Student std) {
+		
+		return stdDao.updateStudent(rollNum, std);
+	}
+
+	@Override
+	public boolean deleteStudent(int rollNum) {
+		
+		return stdDao.deleteStudent(rollNum);
+	}
+
 }

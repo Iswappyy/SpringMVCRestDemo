@@ -61,4 +61,77 @@ public class StudentDaoImpl implements StudentDao {
 
 	}
 
+	@Override
+	public Student getStudentRollNum(int rollNum) {
+		Student entity;
+		String query = "from Student student where student.rollNum =:rollNum";
+		try {
+			Session session = sessionfactory.openSession();
+			Transaction txc = session.beginTransaction();
+			Query q1 = session.createQuery(query);
+			q1.setParameter("rollNum", rollNum);
+			entity = (Student)q1.uniqueResult();
+			txc.commit();
+            System.out.println("Student roll number  get succesfully...");
+            System.out.println(entity);
+            session.close();
+			return entity;
+		}
+		catch(Exception e) {
+			System.out.println("Oops ...object not get...");
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public boolean updateStudent(int rollNum, Student std) {
+		String q = "update Student set name =:name where rollNum =: rollNum";
+		try {
+			Session session = sessionfactory.openSession();
+			Transaction txc = session.beginTransaction();
+			Query q1 = session.createQuery(q);
+			q1.setParameter("rollNum", rollNum);
+			q1.setParameter("name", std.getName());
+			int r = q1.executeUpdate();
+			System.out.println("Updated...");
+			System.out.println(r);
+			txc.commit();
+
+			System.out.println("update operation get succesfully completed..");
+			session.close();
+			return true;
+		}
+		catch(Exception e) {
+			System.out.println("oops data not get uppdated...");
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean deleteStudent(int rollNum) {
+		Student entity;
+		String q = "delete from Student where rollNum =: rollNum";
+		try {
+			Session session = sessionfactory.openSession();
+			Transaction txc = session.beginTransaction();
+			Query q1 = session.createQuery(q);
+			q1.setParameter("rollNum", rollNum);
+			int r = q1.executeUpdate();
+			System.out.println("deleted...: ");
+			System.out.println(r);
+			txc.commit();
+			System.out.println("Object deleted succesfully...");
+			session.close();
+			return true;
+		}
+		catch(Exception e) {
+			System.out.println("Oops object not get deleted...");
+			e.printStackTrace();
+			return false;
+		}
+	
+	}
+
 }
